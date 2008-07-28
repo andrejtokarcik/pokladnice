@@ -1,6 +1,5 @@
 syntax: glob
 *.pyc
-*.ini
 *.swp
 *.orig
 .project
@@ -8,4 +7,5 @@ syntax: glob
 *.db
 .settings
 *~
+config.py
 pokladnice/openid_consumer_store
