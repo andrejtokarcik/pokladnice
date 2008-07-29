@@ -1,16 +1,15 @@
 from django.conf.urls.defaults import *
+from django.contrib.auth.views import login, logout
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from pokladnice import treasury
+from pokladnice.settings import MEDIA_ROOT
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^pokladnice/', include('pokladnice.foo.urls')),
+    # static files in media dir
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
 
-    # Uncomment the next line to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^', include('treasury.urls')),
 
-    # Uncomment the next line for to enable the admin:
-    # (r'^admin/(.*)', admin.site.root),
+    (r'^prihlaseni', login, {'template_name': 'login.html'}),
+    (r'^odhlaseni', logout, {'template_name': 'logout.html'}),
 )
