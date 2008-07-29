@@ -11,7 +11,7 @@ except ImportError:
     sys.exit(1)
 
 # Processing some options fetched from config
-MEDIA_ROOT = ''.join([PROJECT_ROOT, MEDIA_ROOT])
+MEDIA_ROOT = path.join(PROJECT_ROOT, MEDIA_ROOT)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -30,7 +30,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'pokladnice.urls'
 
 TEMPLATE_DIRS = (
-    path.join(PROJECT_ROOT, 'template/')
+    path.join(PROJECT_ROOT, 'templates/')
 )
 
 INSTALLED_APPS = (
@@ -38,4 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'pokladnice.treasury',
 )
+
+
+AUTH_PROFILE_MODULE = 'user.userprofile'
+LOGIN_URL = '/prihlaseni'

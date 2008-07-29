@@ -44,7 +44,7 @@ FILE_CHARSET = 'utf-8'
 DEFAULT_CHARSET = 'utf-8'
 USE_I18N = True
 
-MEDIA_ROOT = "media/"  # will be prepended with project root
+MEDIA_ROOT = "media/"  # will be prepended with the project root
 MEDIA_URL = "/media/"
 ADMIN_MEDIA_PREFIX = "/adminmedia/"
 
