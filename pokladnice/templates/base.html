@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs">
+<head>
+	<meta http-equiv="content-type" content="aplication/xhtml; charset=UTF-8" />
+	<meta name="keywords" content="rpgplanet rpg pokladnice subor file" />
+	<meta name="description" content="{% block description %}{% endblock %}" />
+	{% block meta %}{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/basic.css" />
+	{% block css %}
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/yui/container.css">
+	{% endblock %}
+	<title>{% block title %}{% endblock %} | Pokladnice</title>
+<body>
+<div id="header">
+	<div id="h-right">
+		<div id="h-topmenu">
+			<ul>
+				<li><a href="http://rpghrac.cz" title="RPGHráč: Domov každého hráče">RPGHRÁČ</a></li>
+				<li><a href="http://rpgpedia.cz" title="RPGPedia: Informace o každé hře">RPGPEDIA</a></li>
+				<li><a href="http://rpgplanet.cz" title="RPGPlanet: Desítky her. Jedna komunita. Společná planeta.">RPGPLANET</a></li>
+			</ul>
+		</div>
+
+		<div id="h-userinfo">
+			{% if user.is_authenticated %}
+				<p><span id="h-username"><strong><a href="/uzivatel/{{ user.username }}/profil/" id="link-profile">{{ user.username }}</a></strong></span>&nbsp;|&nbsp;<a href="/nastroje/uzivatel/autorizace/odhlaseni/" id="link-logout">odhlásit</a></p>
+			{% else %}
+				<p><span id="h-username"><strong><a href="/nastroje/uzivatel/autorizace/prihlaseni/">Neznámý poutník</a></strong></span>&nbsp;|&nbsp;<a href="/nastroje/uzivatel/autorizace/prihlaseni" id="link-login">přihlásit</a></p>
+			{% endif %}
+		</div>
+	</div>
+</div>
+<div class="pokladnice-logo"><a href="/" title="Pokladnice"><img src="{{ MEDIA_URL }}img/pokladnice-logo.gif" class="logo" alt="logo Pokladnice" /></a></div>
+<div id="content">
+	<div id="sidebar">
+		<div id="sidebar-content">
+			<div class="s-menu">
+				<div class="s-sort">
+					<a href="#">Navigace</a>
+				</div>
+				<div class="s-list">
+					<ul>
+						<li><a href="/" id="navigace-uvodni-stranka">Úvodní stránka</a></li>
+					</ul>
+				</div>
+			</div>
+		{% block menu_side %}{%endblock%}
+		</div>
+	</div>
+
+	{% block menu_top %}{%endblock%}
+
+	<div id="main">
+		<div id="main-content">
+		{% block content %}{% endblock %}
+		</div>
+	</div>
+	<hr class="cleaner" />
+</div>
+    <div id="footer">
+      <div id="f-links">
+        <a href="/pokladnice/licence" id="navigace-licence">Licence</a>
+        <a href="/pokladnice/kontakt" id="navigace-kontakt">Kontakt</a>
+      </div>
+    </div>
+</body>
+</html>
