@@ -24,9 +24,9 @@
 
 		<div id="h-userinfo">
 			{% if user.is_authenticated %}
-				<p><span id="h-username"><strong><a href="/uzivatel/{{ user.username }}/profil/" id="link-profile">{{ user.username }}</a></strong></span>&nbsp;|&nbsp;<a href="/nastroje/uzivatel/autorizace/odhlaseni/" id="link-logout">odhlásit</a></p>
+				<p><span id="h-username"><strong><a href="/uzivatel/{{ user.username }}/profil/" id="link-profile">{{ user.username }}</a></strong></span>&nbsp;|&nbsp;<a href="/odhlaseni" id="link-logout">odhlásit</a></p>
 			{% else %}
-				<p><span id="h-username"><strong><a href="/nastroje/uzivatel/autorizace/prihlaseni/">Neznámý poutník</a></strong></span>&nbsp;|&nbsp;<a href="/nastroje/uzivatel/autorizace/prihlaseni" id="link-login">přihlásit</a></p>
+				<p><span id="h-username"><strong><a href="/prihlaseni">Neznámý poutník</a></strong></span>&nbsp;|&nbsp;<a href="/prihlaseni" id="link-login">přihlásit</a></p>
 			{% endif %}
 		</div>
 	</div>
