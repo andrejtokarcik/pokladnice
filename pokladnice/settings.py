@@ -24,7 +24,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.doc.XViewMiddleware',
+    #'django.middleware.doc.XViewMiddleware',
 )
 
 ROOT_URLCONF = 'pokladnice.urls'
@@ -44,3 +44,4 @@ INSTALLED_APPS = (
 
 AUTH_PROFILE_MODULE = 'user.userprofile'
 LOGIN_URL = '/prihlaseni'
+LOGIN_REDIRECT_URL = '/'

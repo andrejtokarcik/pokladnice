@@ -1,4 +1,6 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from lib import render_with_context
+from django.contrib.auth.decorators import login_required
 
-def main(req):
-    return HttpResponseRedirect('/prihlaseni')
+@login_required
+def main(request):
+    return render_with_context(request, 'home.html')
