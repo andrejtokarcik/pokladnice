@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Nahratie súboru{% endblock %}
+
+{% block content %}
+<h1>Nahratie súboru</h1>
+
+{% if form.is_valid %}
+<p>Nahratie úspešné</p>
+{% endif %}
+
+<form enctype="multipart/form-data" method="post" action="/pokladnice/upload">
+	<table>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value="Nahrát" name="upload" />
+</form>
+{% endblock %}

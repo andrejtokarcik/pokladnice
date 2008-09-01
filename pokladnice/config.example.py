@@ -1,7 +1,8 @@
 
 ### Pokladnice specific settings
-ALLOW_ALL_USERS = False
-#OPENID_CONSUMER_STORE = "/tmp/"
+#ALLOW_ALL_USERS = False
+STORAGE_LIMIT = 5  # maximum amount of storage for a user (in megabytes)
+STORAGE_LOCATION = "/tmp"  # dir where uploaded files will be stored
 
 # Webtests:
 # on which port to run cherrypy server, used to wrap webtests
