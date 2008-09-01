@@ -12,9 +12,16 @@ def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            from os.path import join as path_join
-            destination = open(path_join(settings.STORAGE_LOCATION,
-                               request.FILES['file'].name), 'wb+')
+            from os import mkdir
+            from os.path import join as path_join, exists
+
+            destination = path_join(settings.STORAGE_LOCATION,
+                    request.user.username)
+            if not exists(destination):
+                mkdir(destination)
+
+            destination = open(path_join(destination,
+                request.FILES['file'].name), 'wb+')
 
             for chunk in request.FILES['file'].chunks():
                 destination.write(chunk)
