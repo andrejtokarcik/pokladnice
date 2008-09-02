@@ -11,5 +11,5 @@ urlpatterns = patterns('',
     (r'^', include('treasury.urls')),
 
     (r'^prihlaseni$', login, {'template_name': 'login.html'}),
-    (r'^odhlaseni$', logout, {'template_name': 'logout.html'}),
+    (r'^odhlaseni$', logout, {'next_page': '/'}),
 )
