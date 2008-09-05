@@ -6,5 +6,5 @@ urlpatterns = patterns('',
     (r'^$', redirect_to, {'url': '/pokladnice'}),
     (r'^pokladnice$', main),
     (r'^pokladnice/upload$', upload),
-    (r'^uzivatel/(?P<username>[a-zA-Z0-9._-]+)$', profile)
+    (r'^pokladnice/uzivatel/(?P<username>[a-zA-Z0-9._-]+)$', profile)
 )
