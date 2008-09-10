@@ -5,9 +5,11 @@
 {% block content %}
 <h1>Nahratie súboru</h1>
 
-{% if form.is_valid %}
+{% if errors %}
+<p>{{ errors }}</p>
+{% else %}{% if form.is_valid %}
 <p>Nahratie úspešné</p>
-{% endif %}
+{% endif %}{% endif %}
 
 <form enctype="multipart/form-data" method="post" action="/pokladnice/upload">
 	<table>
