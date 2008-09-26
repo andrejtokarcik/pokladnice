@@ -46,3 +46,4 @@ AUTH_PROFILE_MODULE = 'user.userprofile'
 LOGIN_URL = '/prihlaseni'
 LOGIN_REDIRECT_URL = '/'
 DEFAULT_FILE_STORAGE = 'treasury.storage.TreasuryStorage'
+FILE_UPLOAD_PERMISSIONS = 0644
