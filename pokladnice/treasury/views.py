@@ -1,15 +1,19 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import default_storage as storage
 
-from lib import render_with_context
+from lib import render_with_context, storage_location
 from forms import UploadFileForm
-from storage import TreasuryStorage
 
 @login_required
 def main(request):
-    return render_with_context(request, 'home.html')
+    data = {}
+    for func in [space_meter]:
+        data.update(func(request))
+    return render_with_context(request, 'home.html', data)
 
 @login_required
+@storage_location
 def upload(request):
     errors = ''
 
@@ -17,8 +21,6 @@ def upload(request):
         form = UploadFileForm(request.POST, request.FILES)
 
         if form.is_valid():
-            storage = TreasuryStorage()
-            storage.specify_location(request.user.username)
             storage.save(request.FILES['file'].name, request.FILES['file'])
     else:
         form = UploadFileForm()
@@ -29,3 +31,27 @@ def upload(request):
 @login_required
 def profile(request, username):
     return render_with_context(request, 'profile.html', {'username': username})
+
+@storage_location
+def space_meter(request):
+    size = {}; percent = {}; res = {'space': {}}
+
+    size['total'] = storage.limit
+    size['used'] = storage.get_used_space()
+    size['free'] = size['total'] - size['used']
+
+    # Filling result with percents
+    def make_percent(num1, num2):
+        return int((float(num1) / float(num2)) * 100)
+
+    percent['free'] = make_percent(size['free'], size['total'])
+    percent['used'] = 100 - percent['free']
+    res['space']['percent'] = percent
+
+    # Converting to megabytes (dirty?)
+    for key in size.keys():
+        size[key] = str(float(size[key]) / storage.megabyte)[:4]  # FIXME
+        size[key] = ''.join([size[key], ' MB'])
+    res['space']['concrete'] = size
+
+    return res

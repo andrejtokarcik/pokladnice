@@ -1,0 +1,42 @@
+/*
+ * Space meter CSS
+ *
+ * Based on styles from Progress Meter Macro plugin for Trac
+ * http://trac-hacks.org/wiki/ProgressMeterMacro
+ */
+
+.space_meter table {
+	border: 1px solid #d7d7d7;
+	border-collapse: collapse;
+	border-spacing: 0;
+	float: left;
+	margin: 0;
+	padding: 0;
+	empty-cells: show;
+	height: 1.2em;
+}
+.space_meter table td { background: #fff; padding: 0 }
+.space_meter table td.used { background: #f5f5b5 }
+.space_meter table td.free { background: #bae0ba }
+.space_meter table td :hover { background: none }
+.space_meter p.percent {
+	font-size: 10px;
+	line-height: 2.4em;
+	margin: 0.9em 0 .1em 1.2em;
+	float: left;
+}
+.space_meter h2 {
+	background: #f7f7f7;
+	border-bottom: 1px solid #d7d7d7;
+	margin: 0;
+}
+.space_meter table { margin: 1em 0 0 1em; width: 40em; max-width: 70% }
+.space_meter dl {
+	font-size: 10px;
+	font-style: italic;
+	margin: 0 1em 2em;
+	white-space: nowrap;
+	clear: left;
+}
+.space_meter dt { display: inline; margin-left: .5em }
+.space_meter dd { display: inline; margin: 0 1em 0 .5em }

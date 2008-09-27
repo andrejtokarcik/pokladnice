@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/space_meter.css">
+{% endblock %}
+
 {% block content %}
 <h1>Pokladnice</h1>
 
 <ul>
 	<li><a href="/pokladnice/upload">Nahratie súboru</a></li>
 </ul>
+
+<div class="space_meter"><table><tr><td class="free" style="width: {{ space.percent.free }}%"></td><td class="used" style="width: {{ space.percent.used }}%"></td></tr></table><p class="percent">{{ space.percent.free }}%</p><dl><dt>Free space:</dt><dd>{{ space.concrete.free }}</dd><dt>Total:</dt><dd>{{ space.concrete.total }}</dd></dl></div>
 {% endblock %}
