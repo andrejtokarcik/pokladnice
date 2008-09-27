@@ -2,8 +2,9 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage as storage
 
-from lib import render_with_context, storage_location
+from lib import render_with_context
 from forms import UploadFileForm
+from models import UploadedFile
 
 @login_required
 def main(request):
@@ -13,14 +14,15 @@ def main(request):
     return render_with_context(request, 'home.html', data)
 
 #@login_required
-@storage_location
 def upload(request):
     sent = (request.method == 'POST')
     if sent:
         form = UploadFileForm(request.POST, request.FILES)
-
         if form.is_valid():
-            storage.save(request.FILES['file'].name, request.FILES['file'])
+            file_obj = request.FILES['file']
+            storage.check_limit(file_obj)
+            upl_file = UploadedFile.objects.create(size=file_obj.size, user=request.user)
+            upl_file.file.save(file_obj.name, file_obj)
     else:
         form = UploadFileForm()
 
@@ -31,7 +33,6 @@ def upload(request):
 def profile(request, username):
     return render_with_context(request, 'profile.html', {'username': username})
 
-@storage_location
 def space_meter(request):
     size = {}; percent = {}; res = {'space': {}}
 

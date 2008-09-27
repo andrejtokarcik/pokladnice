@@ -26,7 +26,7 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-URL_ROOT="http://localhost:8000/"
+URL_ROOT = "http://localhost:8000/"
 
 SITE_ID = 1
 
