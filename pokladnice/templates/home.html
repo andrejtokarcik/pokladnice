@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Domovská stránka{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/space_meter.css">
@@ -7,9 +8,24 @@
 {% block content %}
 <h1>Pokladnice</h1>
 
-<ul>
-	<li><a href="/pokladnice/upload">Nahratie súboru</a></li>
-</ul>
 
+<h2>Nahratie súboru</h2>
+
+{% if sent %}
+{% if form.errors %}
+<p>Nastala chyba: {{ form.errors }}</p>
+{% else %}
+<p>Nahratie úspešné</p>
+{% endif %}
+{% endif %}
+
+<form enctype="multipart/form-data" method="post" action="{{ url }}">
+	<table>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value="Nahrát" name="upload" />
+</form>
+
+<h2>Space meter</h2>
 <div class="space_meter"><table><tr><td class="free" style="width: {{ space.percent.free }}%"></td><td class="used" style="width: {{ space.percent.used }}%"></td></tr></table><p class="percent">{{ space.percent.free }}%</p><dl><dt>Free space:</dt><dd>{{ space.concrete.free }}</dd><dt>Total:</dt><dd>{{ space.concrete.total }}</dd></dl></div>
 {% endblock %}

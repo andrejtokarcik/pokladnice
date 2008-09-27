@@ -8,16 +8,15 @@ from forms import UploadFileForm
 @login_required
 def main(request):
     data = {}
-    for func in [space_meter]:
+    for func in [upload, space_meter]:
         data.update(func(request))
     return render_with_context(request, 'home.html', data)
 
-@login_required
+#@login_required
 @storage_location
 def upload(request):
-    errors = ''
-
-    if request.method == 'POST':
+    sent = (request.method == 'POST')
+    if sent:
         form = UploadFileForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -25,8 +24,8 @@ def upload(request):
     else:
         form = UploadFileForm()
 
-    return render_with_context(request, 'upload.html',
-            {'form': form, 'errors': errors})
+    #return render_with_context(request, 'upload.html', {'form': form})
+    return {'form': form, 'sent': sent}
 
 @login_required
 def profile(request, username):
