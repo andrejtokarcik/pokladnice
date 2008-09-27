@@ -348,4 +348,6 @@ hr.cleaner {
 	border: none;
 	visibility: hidden;
 }
-
+.error {
+	color: #ff0000;
+}
