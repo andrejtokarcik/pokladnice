@@ -1,31 +1,29 @@
 {% extends "base.html" %}
-{% block title %}Domovská stránka{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "Home" %}{# translated as "Domů" what is quite confusing title #}{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/space_meter.css">
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/space_meter.css">
 {% endblock %}
 
 {% block content %}
 <h1>Pokladnice</h1>
 
 
-<h2>Nahratie súboru</h2>
+<h2>{% trans "File upload" %}</h2>
 
-{% if sent %}
-{% if form.errors %}
-<p class="error">Nastala chyba</p>
-{% else %}
-<p>Nahratie úspešné</p>
-{% endif %}
+{% if form.has_changed and form.is_valid %}
+<p>{% trans "Upload successful." %}</p>
 {% endif %}
 
-<form enctype="multipart/form-data" method="post" action="{{ url }}">
+<form enctype="multipart/form-data" method="post" action="">
 	<table>
 		{{ form.as_table }}
 	</table>
-	<input type="submit" value="Nahrát" name="upload" />
+	<input type="submit" value="{% trans "Save" %}" name="upload" />
 </form>
 
-<h2>Space meter</h2>
-<div class="space_meter"><table><tr><td class="free" style="width: {{ space.percent.free }}%"></td><td class="used" style="width: {{ space.percent.used }}%"></td></tr></table><p class="percent">{{ space.percent.free }}%</p><dl><dt>Free space:</dt><dd>{{ space.concrete.free }}</dd><dt>Total:</dt><dd>{{ space.concrete.total }}</dd></dl></div>
+<h2>{% trans "Space meter" %}</h2>
+<div class="space_meter"><table><tr><td class="free" style="width: {{ space.percent.free }}%"></td><td class="used" style="width: {{ space.percent.used }}%"></td></tr></table><p class="percent">{{ space.percent.free }}%</p><dl><dt>{% trans "Free space:" %}</dt><dd>{{ space.concrete.free }}</dd><dt>{% trans "Total:" %}</dt><dd>{{ space.concrete.total }}</dd></dl></div>
 {% endblock %}

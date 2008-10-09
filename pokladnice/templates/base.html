@@ -1,3 +1,4 @@
+{% load i18n %}
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs">
@@ -6,9 +7,9 @@
 	<meta name="keywords" content="rpgplanet rpg pokladnice subor file" />
 	<meta name="description" content="{% block description %}{% endblock %}" />
 	{% block meta %}{% endblock %}
-	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/basic.css" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/basic.css" />
 	{% block css %}
-		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/yui/container.css">
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/yui/container.css">
 	{% endblock %}
 	<title>{% block title %}{% endblock %} | Pokladnice</title>
 <body>
@@ -24,24 +25,24 @@
 
 		<div id="h-userinfo">
 			{% if user.is_authenticated %}
-				<p><span id="h-username"><strong><a href="/uzivatel/{{ user.username }}" id="link-profile">{{ user.username }}</a></strong></span>&nbsp;|&nbsp;<a href="/odhlaseni" id="link-logout">odhlásit</a></p>
+				<p><span id="h-username"><strong><a href="/uzivatel/{{ user.username }}" id="link-profile">{{ user.username }}</a></strong></span>&nbsp;|&nbsp;<a href="/odhlaseni" id="link-logout">{% trans "Log out" %}</a></p>
 			{% else %}
-				<p><span id="h-username"><strong><a href="/prihlaseni">Neznámý poutník</a></strong></span>&nbsp;|&nbsp;<a href="/prihlaseni" id="link-login">přihlásit</a></p>
+				<p><span id="h-username"><strong><a href="/prihlaseni">{% trans "Unknown user" %}</a></strong></span>&nbsp;|&nbsp;<a href="/prihlaseni" id="link-login">{% trans "Log in" %}</a></p>
 			{% endif %}
 		</div>
 	</div>
 </div>
-<div class="pokladnice-logo"><a href="/" title="Pokladnice"><img src="{{ MEDIA_URL }}img/pokladnice-logo.gif" class="logo" alt="logo Pokladnice" /></a></div>
+<div class="pokladnice-logo"><a href="/" title="Pokladnice"><img src="{{ MEDIA_URL }}/img/pokladnice-logo.gif" class="logo" alt="logo Pokladnice" /></a></div>
 <div id="content">
 	<div id="sidebar">
 		<div id="sidebar-content">
 			<div class="s-menu">
 				<div class="s-sort">
-					<a href="#">Navigace</a>
+					<a href="#">{% trans "Navigation" %}</a>
 				</div>
 				<div class="s-list">
 					<ul>
-						<li><a href="/" id="navigace-uvodni-stranka">Domovská stránka</a></li>
+						<li><a href="/" id="navigace-uvodni-stranka">{% trans "Home" %}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -60,8 +61,8 @@
 </div>
     <div id="footer">
       <div id="f-links">
-        <a href="/pokladnice/licence" id="navigace-licence">Licence</a>
-        <a href="/pokladnice/kontakt" id="navigace-kontakt">Kontakt</a>
+        <a href="/pokladnice/licence" id="navigace-licence">{% trans "License" %}</a>
+	<a href="/pokladnice/kontakt" id="navigace-kontakt">{% trans "Contact" %}</a>
       </div>
     </div>
 </body>
