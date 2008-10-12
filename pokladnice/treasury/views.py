@@ -15,19 +15,18 @@ def main(request):
 
 #@login_required
 def upload(request):
-    sent = (request.method == 'POST')
-    if sent:
+    if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            file_obj = request.FILES['file']
-            storage.check_limit(file_obj)
-            upl_file = UploadedFile.objects.create(size=file_obj.size, user=request.user)
+            file_obj = form.cleaned_data['file']
+            upl_file = UploadedFile(size=file_obj.size, user=request.user)
             upl_file.file.save(file_obj.name, file_obj)
+            upl_file.save()
     else:
         form = UploadFileForm()
 
     #return render_with_context(request, 'upload.html', {'form': form})
-    return {'form': form, 'sent': sent}
+    return {'form': form}
 
 @login_required
 def profile(request, username):
