@@ -6,7 +6,7 @@ def get_file_path(instance, filename):
     from os.path import join
     return join(instance.user.username, filename)
 
-class UploadedFile(models.Model):
+class FileUpload(models.Model):
     file = models.FileField(_('File path'), upload_to=get_file_path)
     user = models.ForeignKey(User)
     size = models.IntegerField()

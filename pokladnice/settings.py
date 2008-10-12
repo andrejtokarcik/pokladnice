@@ -1,14 +1,14 @@
 # Django settings for pokladnice project.
 
-from os import path
-PROJECT_ROOT = path.join(path.dirname(path.abspath(__file__)))
-
 try:
     from config import *
 except ImportError:
     import sys
     sys.stderr.write("Error: Config file not found\n")
     sys.exit(1)
+
+from os import path
+PROJECT_ROOT = path.join(path.dirname(path.abspath(__file__)))
 
 # Processing some options fetched from config
 MEDIA_ROOT = path.join(PROJECT_ROOT, MEDIA_ROOT)
@@ -45,5 +45,5 @@ INSTALLED_APPS = (
 AUTH_PROFILE_MODULE = 'user.userprofile'
 LOGIN_URL = '/prihlaseni'
 LOGIN_REDIRECT_URL = '/'
-DEFAULT_FILE_STORAGE = 'treasury.storage.TreasuryStorage'
+DEFAULT_FILE_STORAGE = 'pokladnice.treasury.storage.TreasuryStorage'
 FILE_UPLOAD_PERMISSIONS = 0644

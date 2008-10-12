@@ -1,10 +1,12 @@
 
 ### Pokladnice specific settings
-#ALLOW_ALL_USERS = False
-STORAGE_LIMIT = 5  # maximum amount of storage for a user (in megabytes)
-STORAGE_LOCATION = "/tmp"  # dir where uploaded files will be stored
+# Maximum amount of storage for a user (in megabytes)
+STORAGE_LIMIT = 5
 
-# Webtests:
+# Directory where uploaded files will be stored
+STORAGE_LOCATION = '/var/tmp'
+
+### Webtests
 # on which port to run cherrypy server, used to wrap webtests
 # must be same as in URL_ROOT 
 CPSERVER_PORT = 8000
@@ -45,7 +47,7 @@ FILE_CHARSET = 'utf-8'
 DEFAULT_CHARSET = 'utf-8'
 USE_I18N = True
 
-MEDIA_ROOT = "media/"  # will be prepended with the project root
+MEDIA_ROOT = "media"  # will be prepended with the project root
 MEDIA_URL = "/media/"
 ADMIN_MEDIA_PREFIX = "/adminmedia/"
 
