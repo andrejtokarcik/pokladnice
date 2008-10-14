@@ -6,11 +6,11 @@ from django.views.generic.simple import direct_to_template
 from treasury.forms import FileUploadForm
 
 @login_required
-def main(request):
+def index(request):
     data = {}
     for func in [upload, space_meter]:
         data.update(func(request))
-    return direct_to_template(request, 'home.html', data)
+    return direct_to_template(request, 'index.html', data)
 
 #@login_required
 def upload(request):
