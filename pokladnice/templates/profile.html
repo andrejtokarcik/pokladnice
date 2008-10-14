@@ -1,9 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title%}Profil uživatele {{ username }}{% endblock %}
+{% block title%}{% blocktrans %}{{ username }}'s User Profile{% endblocktrans %}{% endblock %}
 
 {% block content %}
-
-<h1>Profil uživatele {{ username }}</h1>
+<h1>{% blocktrans %}{{ username }}'s User Profile{% endblocktrans %}</h1>
 
 {% endblock %}
