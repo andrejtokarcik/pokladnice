@@ -1,14 +1,18 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import login, logout
+from django.views.generic.simple import redirect_to
 
-from pokladnice.settings import MEDIA_ROOT
+from django.conf import settings
 
 urlpatterns = patterns('',
     # static files in media dir
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
-    (r'^', include('treasury.urls')),
+    # django user authentication (will be replaced by klicnik)
+    url(r'^prihlaseni/$', login, {'template_name': 'login.html'}, name='login'),
+    url(r'^odhlaseni/$', logout, {'next_page': '/'}, name='logout'),
 
-    (r'^prihlaseni$', login, {'template_name': 'login.html'}),
-    (r'^odhlaseni$', logout, {'next_page': '/'}),
+
+    url(r'^$', redirect_to, {'url': '/pokladnice/'}),
+    url(r'^pokladnice/', include('treasury.urls'))
 )

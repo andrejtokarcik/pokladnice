@@ -25,14 +25,14 @@
 
 		<div id="h-userinfo">
 			{% if user.is_authenticated %}
-				<p><span id="h-username"><strong><a href="/uzivatel/{{ user.username }}" id="link-profile">{{ user.username }}</a></strong></span>&nbsp;|&nbsp;<a href="/odhlaseni" id="link-logout">{% trans "Log out" %}</a></p>
+			<p><span id="h-username"><strong><a href="{% url treasury-profile user.username %}" id="link-profile">{{ user.username }}</a></strong></span>&nbsp;|&nbsp;<a href="{% url logout %}" id="link-logout">{% trans "Log out" %}</a></p>
 			{% else %}
-				<p><span id="h-username"><strong><a href="/prihlaseni">{% trans "Unknown user" %}</a></strong></span>&nbsp;|&nbsp;<a href="/prihlaseni" id="link-login">{% trans "Log in" %}</a></p>
+			<p><span id="h-username"><strong><a href="{% url login %}">{% trans "Unknown user" %}</a></strong></span>&nbsp;|&nbsp;<a href="{% url login %}" id="link-login">{% trans "Log in" %}</a></p>
 			{% endif %}
 		</div>
 	</div>
 </div>
-<div class="pokladnice-logo"><a href="/" title="Pokladnice"><img src="{{ MEDIA_URL }}/img/pokladnice-logo.gif" class="logo" alt="logo Pokladnice" /></a></div>
+<div class="pokladnice-logo"><a href="{% url treasury-index %}" title="Pokladnice"><img src="{{ MEDIA_URL }}/img/pokladnice-logo.gif" class="logo" alt="logo Pokladnice" /></a></div>
 <div id="content">
 	<div id="sidebar">
 		<div id="sidebar-content">
@@ -42,7 +42,7 @@
 				</div>
 				<div class="s-list">
 					<ul>
-						<li><a href="/" id="navigace-uvodni-stranka">{% trans "Home" %}</a></li>
+						<li><a href="{% url treasury-index %}" id="navigace-uvodni-stranka">{% trans "Home" %}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -61,6 +61,7 @@
 </div>
     <div id="footer">
       <div id="f-links">
+        {# FIXME: invalid links #}
         <a href="/pokladnice/licence" id="navigace-licence">{% trans "License" %}</a>
 	<a href="/pokladnice/kontakt" id="navigace-kontakt">{% trans "Contact" %}</a>
       </div>
