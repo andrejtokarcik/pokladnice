@@ -13,7 +13,7 @@ class TreasuryStorage(FileSystemStorage):
 
     def get_used_space(self, user):
         """Returns the amount of space used by saved files."""
-        from models import FileUpload
+        from treasury.models import FileUpload
 
         total_size = 0
         for file in FileUpload.objects.filter(user=user):

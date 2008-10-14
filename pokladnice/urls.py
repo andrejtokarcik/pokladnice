@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import login, logout
 
-from pokladnice import treasury
 from pokladnice.settings import MEDIA_ROOT
 
 urlpatterns = patterns('',

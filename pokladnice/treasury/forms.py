@@ -2,7 +2,7 @@ from django import forms
 from django.core.files.storage import default_storage as storage
 from django.utils.translation import ugettext_lazy as _
 
-from models import FileUpload
+from treasury.models import FileUpload
 
 class FileUploadForm(forms.ModelForm):
     """A form that handles the most basic upload process."""

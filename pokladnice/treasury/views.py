@@ -1,16 +1,16 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage as storage
+from django.views.generic.simple import direct_to_template
 
-from lib import render_with_context
-from forms import FileUploadForm
+from treasury.forms import FileUploadForm
 
 @login_required
 def main(request):
     data = {}
     for func in [upload, space_meter]:
         data.update(func(request))
-    return render_with_context(request, 'home.html', data)
+    return direct_to_template(request, 'home.html', data)
 
 #@login_required
 def upload(request):
@@ -21,7 +21,7 @@ def upload(request):
     else:
         form = FileUploadForm(request.user)
 
-    #return render_with_context(request, 'upload.html', {'form': form})
+    #return direct_to_template(request, 'upload.html', {'form': form})
     return {'form': form}
 
 def space_meter(request):
@@ -49,4 +49,4 @@ def space_meter(request):
 
 @login_required
 def profile(request, username):
-    return render_with_context(request, 'profile.html', {'username': username})
+    return direct_to_template(request, 'profile.html', {'username': username})
