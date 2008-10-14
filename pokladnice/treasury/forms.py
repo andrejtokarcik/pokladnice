@@ -17,7 +17,7 @@ class FileUploadForm(forms.ModelForm):
 
     def clean_file(self):
         """Check file size regarding the user's storage limit."""
-        newsize = FileUpload.objects.get_used_space(self.user) + \
+        newsize = storage.get_used_space(self.user) + \
                 self.cleaned_data['file'].size
 
         if newsize > storage.limit:
