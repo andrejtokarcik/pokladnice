@@ -10,3 +10,6 @@ class FileUpload(models.Model):
     file = models.FileField(_('File path'), upload_to=get_file_path)
     user = models.ForeignKey(User)
     size = models.IntegerField()
+
+    def __unicode__(self):
+        return self.file.name

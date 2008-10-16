@@ -4,11 +4,12 @@ from django.core.files.storage import default_storage as storage
 from django.views.generic.simple import direct_to_template
 
 from treasury.forms import FileUploadForm
+from treasury.models import FileUpload
 
 @login_required
 def index(request):
     data = {}
-    for func in [upload, space_meter]:
+    for func in [upload, space_meter, uploaded_files]:
         data.update(func(request))
     return direct_to_template(request, 'index.html', data)
 
@@ -47,6 +48,12 @@ def space_meter(request):
 
     return res
 
+def uploaded_files(request):
+    """List user's uploaded files."""
+    return {'uploaded_files': FileUpload.objects.filter(user=request.user)}
+
 @login_required
 def profile(request, username):
     return direct_to_template(request, 'profile.html', {'username': username})
+
+# EOF
