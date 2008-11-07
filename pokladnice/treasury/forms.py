@@ -26,6 +26,13 @@ class FileUploadForm(forms.ModelForm):
             return self.cleaned_data['file']
 
     def save(self):
-        fu = FileUpload(size=self.cleaned_data['file'].size, user=self.user)
-        fu.file.save(self.cleaned_data['file'].name, self.cleaned_data['file'])
-        fu.save()
+        """Process and save the file to model."""
+        file = self.cleaned_data['file']
+        args = {}
+        args['name'] = file.name
+        args['size'] = file.size
+        args['user'] = self.user
+
+        upl = FileUpload(**args)
+        upl.file.save(file.name, file)
+        upl.save()

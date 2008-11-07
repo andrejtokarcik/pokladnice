@@ -1,15 +1,21 @@
+import os
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 def get_file_path(instance, filename):
-    from os.path import join
-    return join(instance.user.username, filename)
+    return os.path.join(instance.user.username, filename)
 
 class FileUpload(models.Model):
     file = models.FileField(_('File path'), upload_to=get_file_path)
-    user = models.ForeignKey(User)
+    name = models.CharField(_('File name'), max_length=50)
     size = models.IntegerField()
 
+    user = models.ForeignKey(User)
+
+    class Meta:
+        db_table = 'treasury_file_upload'
+
     def __unicode__(self):
-        return self.file.name
+        return self.name
