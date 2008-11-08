@@ -4,7 +4,11 @@
 {% if uploaded_files %}
 <ul>
   {% for file in uploaded_files %}
-  <li>{{ file.name }} ({{ file.size|filesizeformat }})</li>
+  <li>{{ file.name }}
+    <ul>
+      <li>{% trans "File size:" %} {{ file.size|filesizeformat }}</li>
+    </ul>
+  </li>
   {% endfor %}
 </ul>
 {% else %}
