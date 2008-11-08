@@ -4,7 +4,7 @@
 STORAGE_LIMIT = 5 * 2 ** 20 # = 5 megabytes
 
 # Directory where uploaded files will be stored
-STORAGE_LOCATION = '/var/tmp'
+STORAGE_LOCATION = '/var/tmp/pokladnice'
 
 ### Webtests
 # on which port to run cherrypy server, used to wrap webtests
