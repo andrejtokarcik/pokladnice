@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Deletion successful" %}{% endblock %}
+
+{% block meta %}<meta http-equiv="Refresh" content="5; URL={% url treasury-index %}" />{% endblock %}
+
+{% block content %}
+<h1>{% trans "Deletion successful" %}</h1>
+{% endblock %}

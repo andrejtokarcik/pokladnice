@@ -51,4 +51,7 @@ def uploaded_files(request):
 def profile(request, username):
     return direct_to_template(request, 'profile.html', {'username': username})
 
-# EOF
+@login_required
+def delete(request, id):
+    FileUpload.objects.filter(id=id).delete()
+    return direct_to_template(request, 'deleted.html')

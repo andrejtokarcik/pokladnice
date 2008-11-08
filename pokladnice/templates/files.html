@@ -4,7 +4,7 @@
 {% if uploaded_files %}
 <ul>
   {% for file in uploaded_files %}
-  <li>{{ file.name }}
+  <li>{{ file.name }} (<a href="{% url treasury-file-delete file.id %}">{% trans "Delete" %}</a>)
     <ul>
       <li>{% trans "File size:" %} {{ file.size|filesizeformat }}</li>
     </ul>
