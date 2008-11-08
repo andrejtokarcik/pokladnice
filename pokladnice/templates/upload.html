@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<h2>{% trans "File upload" %}</h2>
+
+{% if form.has_changed and form.is_valid %}
+<p>{% trans "Upload successful." %}</p>
+{% endif %}
+
+<form enctype="multipart/form-data" method="post" action="">
+	<table>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value="{% trans "Save" %}" name="upload" />
+</form>

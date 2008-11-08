@@ -10,33 +10,14 @@
 {% block content %}
 <h1>Pokladnice</h1>
 
+{# File upload form #}
+{% include "upload.html" %}
 
-<h2>{% trans "File upload" %}</h2>
 
-{% if form.has_changed and form.is_valid %}
-<p>{% trans "Upload successful." %}</p>
-{% endif %}
+{# Space meter #}
+{% include "space_meter.html" %}
 
-<form enctype="multipart/form-data" method="post" action="">
-	<table>
-		{{ form.as_table }}
-	</table>
-	<input type="submit" value="{% trans "Save" %}" name="upload" />
-</form>
-
-<h2>{% trans "Space meter" %}</h2>
-<div class="space_meter"><table><tr><td class="free" style="width: {{ space.percent.free }}%"></td><td class="used" style="width: {{ space.percent.used }}%"></td></tr></table><p class="percent">{{ space.percent.free }}%</p><dl><dt>{% trans "Free space:" %}</dt><dd>{{ space.concrete.free|filesizeformat }}</dd><dt>{% trans "Total:" %}</dt><dd>{{ space.concrete.total|filesizeformat }}</dd></dl></div>
-
-<h2>{% trans "Uploaded files" %}</h2>
-{% if uploaded_files %}
-  <ul>
-  {% for file in uploaded_files %}
-  <li>{{ file.name }} ({{ file.size|filesizeformat }})</li>
-  {% endfor %}
-  </ul>
-{% else %}
-  {% trans "No uploaded files found." %}
-{% endif %}
+{# List of uploaded files #}
+{% include "files.html" %}
 
 {% endblock %}
-{# EOF #}

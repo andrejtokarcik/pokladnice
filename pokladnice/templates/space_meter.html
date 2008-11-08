@@ -1,0 +1,18 @@
+{% load i18n %}
+
+<h2>{% trans "Space meter" %}</h2>
+<div class="space_meter">
+  <table>
+    <tr>
+      <td class="free" style="width: {{ space.percent.free }}%"></td>
+      <td class="used" style="width: {{ space.percent.used }}%"></td>
+    </tr>
+  </table>
+  <p class="percent">{{ space.percent.free }}%</p>
+  <dl>
+    <dt>{% trans "Free space:" %}</dt>
+    <dd>{{ space.concrete.free|filesizeformat }}</dd>
+    <dt>{% trans "Total:" %}</dt>
+    <dd>{{ space.concrete.total|filesizeformat }}</dd>
+  </dl>
+</div>

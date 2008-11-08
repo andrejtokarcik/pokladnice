@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<h2>{% trans "Uploaded files" %}</h2>
+{% if uploaded_files %}
+<ul>
+  {% for file in uploaded_files %}
+  <li>{{ file.name }} ({{ file.size|filesizeformat }})</li>
+  {% endfor %}
+</ul>
+{% else %}
+  {% trans "No uploaded files found." %}
+{% endif %}
