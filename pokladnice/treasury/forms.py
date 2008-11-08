@@ -21,7 +21,7 @@ class FileUploadForm(forms.ModelForm):
                 self.cleaned_data['file'].size
 
         if newsize > storage.limit:
-            raise forms.ValidationError(_('Storage limit exceeded'))
+            raise forms.ValidationError(_('Storage limit exceeded.'))
         else:
             return self.cleaned_data['file']
 

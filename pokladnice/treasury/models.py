@@ -16,6 +16,3 @@ class FileUpload(models.Model):
 
     class Meta:
         db_table = 'treasury_file_upload'
-
-    def __unicode__(self):
-        return self.name
