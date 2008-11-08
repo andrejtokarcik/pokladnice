@@ -31,6 +31,7 @@ def space_meter(request):
     size['total'] = storage.limit
     size['used'] = storage.get_used_space(user=request.user)
     size['free'] = size['total'] - size['used']
+    res['space']['concrete'] = size
 
     # Filling result with percents
     def make_percent(num1, num2):
@@ -39,12 +40,6 @@ def space_meter(request):
     percent['free'] = make_percent(size['free'], size['total'])
     percent['used'] = 100 - percent['free']
     res['space']['percent'] = percent
-
-    # Converting to megabytes (dirty?)
-    for key in size.keys():
-        size[key] = str(float(size[key]) / storage.megabyte)[:4] # FIXME (the number)
-        size[key] = ' '.join([size[key], 'MB'])
-    res['space']['concrete'] = size
 
     return res
 

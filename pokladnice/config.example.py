@@ -1,7 +1,7 @@
 
 ### Pokladnice specific settings
-# Maximum amount of storage for a user (in megabytes)
-STORAGE_LIMIT = 5
+# Maximum amount of storage for a user (in bytes)
+STORAGE_LIMIT = 5 * 2 ** 20 # = 5 megabytes
 
 # Directory where uploaded files will be stored
 STORAGE_LOCATION = '/var/tmp'

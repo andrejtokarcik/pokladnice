@@ -4,12 +4,10 @@ from django.core.files.storage import FileSystemStorage
 class TreasuryStorage(FileSystemStorage):
     """Treasury storage system."""
 
-    megabyte = 2 ** 20 # one megabyte in bytes
-
     def __init__(self, location=settings.STORAGE_LOCATION, limit=settings.STORAGE_LIMIT):
         super(self.__class__, self).__init__()
         self.location = location
-        self.limit = long(limit * self.megabyte) # converting megabytes to bytes
+        self.limit = limit
 
     def get_used_space(self, user):
         """Returns the amount of space used by saved files."""
