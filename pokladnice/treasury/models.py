@@ -11,6 +11,7 @@ class FileUpload(models.Model):
     file = models.FileField(_('File path'), upload_to=get_file_path)
     name = models.CharField(_('File name'), max_length=50)
     size = models.IntegerField()
+    type = models.CharField(max_length=20)
 
     user = models.ForeignKey(User)
 

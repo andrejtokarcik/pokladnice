@@ -7,6 +7,7 @@
   <li>{{ file.name }} (<a href="{% url treasury-file-delete file.id %}">{% trans "Delete" %}</a>)
     <ul>
       <li>{% trans "File size:" %} {{ file.size|filesizeformat }}</li>
+      <li>{% trans "File type:" %} {{ file.type }}</li>
     </ul>
   </li>
   {% endfor %}

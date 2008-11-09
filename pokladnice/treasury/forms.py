@@ -31,6 +31,7 @@ class FileUploadForm(forms.ModelForm):
         args = {}
         args['name'] = file.name
         args['size'] = file.size
+        args['type'] = file.content_type
         args['user'] = self.user
 
         upl = FileUpload(**args)
