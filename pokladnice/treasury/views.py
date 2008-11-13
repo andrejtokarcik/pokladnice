@@ -26,22 +26,12 @@ def upload(request):
     return {'form': form}
 
 def space_meter(request):
-    size = {}; percent = {}; res = {'space': {}}
-
+    size = {}
     size['total'] = storage.limit
     size['used'] = storage.get_used_space(user=request.user)
     size['free'] = size['total'] - size['used']
-    res['space']['concrete'] = size
 
-    # Filling result with percents
-    def make_percent(num1, num2):
-        return int((float(num1) / float(num2)) * 100)
-
-    percent['free'] = make_percent(size['free'], size['total'])
-    percent['used'] = 100 - percent['free']
-    res['space']['percent'] = percent
-
-    return res
+    return {'space': size}
 
 def uploaded_files(request):
     """List user's uploaded files."""

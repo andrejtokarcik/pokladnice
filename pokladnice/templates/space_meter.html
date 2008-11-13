@@ -4,15 +4,16 @@
 <div class="space_meter">
   <table>
     <tr>
-      <td class="free" style="width: {{ space.percent.free }}%"></td>
-      <td class="used" style="width: {{ space.percent.used }}%"></td>
+      {# note that widthratio rounds off its results #}
+      <td class="free" style="width: {% widthratio space.free space.total 100 %}%"></td>
+      <td class="used" style="width: {% widthratio space.used space.total 100 %}%"></td>
     </tr>
   </table>
-  <p class="percent">{{ space.percent.free }}%</p>
+  <p class="percent">{% widthratio space.free space.total 100 %}%</p>
   <dl>
     <dt>{% trans "Free space:" %}</dt>
-    <dd>{{ space.concrete.free|filesizeformat }}</dd>
+    <dd>{{ space.free|filesizeformat }}</dd>
     <dt>{% trans "Total:" %}</dt>
-    <dd>{{ space.concrete.total|filesizeformat }}</dd>
+    <dd>{{ space.total|filesizeformat }}</dd>
   </dl>
 </div>
