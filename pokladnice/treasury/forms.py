@@ -12,8 +12,8 @@ class FileUploadForm(forms.ModelForm):
         fields = ['file']
 
     def __init__(self, user, *args, **kwargs):
+        super(FileUploadForm, self).__init__(*args, **kwargs)
         self.user = user
-        super(self.__class__, self).__init__(*args, **kwargs)
 
     def clean_file(self):
         """Check file size regarding the user's storage limit."""
